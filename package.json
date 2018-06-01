@@ -1,0 +1,26 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "description": "Build and deployment configurations",
+  "scripts": {
+    "prepackage-functions": "rimraf functions",
+    "package-functions": "babel 'functions_es6' --out-dir 'functions' --copy-files --ignore 'node_modules'",
+    "postpackage-functions": "cd functions && npm install",
+    "deploy": "npm run package-functions && firebase deploy",
+    "preshell": "npm run package-functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "preserve": "npm run package-functions",
+    "serve": "firebase serve --only functions"
+  },
+  "author": "",
+  "dependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "rimraf": "^2.6.2"
+  },
+  "private": true
+}

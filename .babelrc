@@ -1,0 +1,17 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "6.11"
+      }
+    }]
+  ],
+  "plugins": [
+    ["transform-runtime", {
+      "polyfill": true,
+      "regenerator": true
+    }],
+    "transform-object-rest-spread",
+    "transform-async-to-generator"
+  ]
+}
