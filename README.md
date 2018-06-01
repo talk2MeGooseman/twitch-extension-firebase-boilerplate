@@ -1,0 +1,1 @@
+twitch-extension-firebase-boilerplate
