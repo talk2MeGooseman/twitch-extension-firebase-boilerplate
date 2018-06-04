@@ -4,7 +4,7 @@ import {
   EXTENSION_ID,
   EXTENSION_VERSION,
   CONFIG_KEY,
-} from "./Constants";
+} from "../Constants";
 import { signToken } from "./AuthToken";
 
 export async function setExtensionConfigured(channel_id, secret, version=EXTENSION_VERSION) {

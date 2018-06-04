@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { EXTENSTION_USER_ID } from "./Constants";
+import { EXTENSTION_USER_ID } from "../Constants";
 
 export function decodeToken(token, secret) {
   const secret_decoded = new Buffer(secret, 'base64');
