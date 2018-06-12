@@ -23,3 +23,32 @@ export async function setExtensionConfigured(channel_id, secret, version=EXTENSI
     }
   });
 }
+
+export async function publishChannelMessage(channel_id, secret) {
+  const token = signChannelMessageToken(channel_id, secret);
+
+  // Create payload message, can be anything up to 5kb
+  // and 1 message per second per channel
+  const message = JSON.stringify({
+    refresh: true
+  });
+
+  try {
+    let response = await axios({
+      method: "POST",
+      url: `${TWITCH_BASE_EXTENSION_URL}/message/${channel_id}`,
+      data: {
+        content_type: "application/json",
+        message: message,
+        targets: ["broadcast"],
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "Client-id": EXTENSION_ID,
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  } catch (error) {
+    console.error('PubSub Message failed', error);
+  }
+}

@@ -25,3 +25,21 @@ export function signToken(secret) {
     expiresIn: '1h'
   });
 }
+
+export function signChannelMessageToken(channel_id, secret) {
+  const secret_decoded = new Buffer(secret, 'base64');
+  const tokenObj = {
+    "user_id": EXTENSTION_USER_ID,
+    "role": "external",
+    "channel_id": channel_id,
+    "pubsub_perms": {
+      "send": [
+        "broadcast"
+      ]
+    }
+  };
+
+  return jwt.sign(tokenObj, secret_decoded, {
+    expiresIn: '1h'
+  });
+}
